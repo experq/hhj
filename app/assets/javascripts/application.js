@@ -14,5 +14,4 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require "signals.min.js"
-//= require turbolinks
 //= require_tree .

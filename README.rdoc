@@ -87,7 +87,7 @@ Re-initialize development database later when needed
 
 ==== Custom prints
 
-  Custom pdf prints are e.g. for calls in public/universities/myuniversity/calls/show.pdf.slim
+  Custom pdf prints are e.g. for calls in app/views/universities/myuniversity/calls/show.pdf.slim
 
   See template overriding below for more info
 
@@ -96,7 +96,7 @@ Re-initialize development database later when needed
   University can have its own custom fields in position applications for applicants.
   See example from
 
-  public/universities/helsinki
+  app/views/universities/helsinki
     _fields.html.slim (used to render extra applicaiton fields and showing the preview of them to the applicant)
     _fields_show.html.slim  (used for showing the data for call admin)
 
@@ -111,14 +111,15 @@ Re-initialize development database later when needed
 
   Basicly all ui templates can be overriden for university. The current university custom folder has top priority when Rails searches
   for ui templates. For example, if helsinki is current university, then the open calls page calls/index.html.slim is first searched under
-  the public/universities/helsinki and if not found then under app/views. This is how the overriding of print templates etc. is achieved.
+  the app/views/universities/helsinki and if not found then under app/views. This is how the overriding of print templates etc. is achieved.
 
   Even though it is possible to override other than pdf print templates also, be aware that it should not be done just because you can and
   will probably lead to maintenance problems and other dark places.
 
 ==== Security concerns
-  Keep in mind that all university specific files are under pubic folder, so they can be directly accessed freely if you know the resource path.
-  This should not be a problem since there is no sensitive data by default there. And this whole repo is open anyway.
+  All university specific assets and locale are under public folder.
+  <no>Keep in mind that all university specific files are under pubic folder, so they can be directly accessed freely if you know the resource path.
+  This should not be a problem since there is no sensitive data by default there. And this whole repo is open anyway.</no>
 
 === Admin view
 

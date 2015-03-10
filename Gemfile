@@ -86,7 +86,7 @@ group :test do
   gem 'capybara-webkit', '~> 1.4.1'
   gem 'capybara-screenshot', '~> 1.0.7'
   # database_cleaner is not required, but highly recommended
-  gem 'database_cleaner', '~> 1.4.1'
+  # gem 'database_cleaner', '~> 1.4.1' # Use 'Mongoid.purge!'
   gem 'launchy', '~> 2.4.3'
   gem 'wait_for', '~> 0.1.1'
   gem 'simplecov', '~> 0.9.2', :require => false

@@ -22,8 +22,6 @@ SimpleCov.start 'rails'
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
-  config.include(EmailSpec::Helpers)
-  config.include(EmailSpec::Matchers)
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -48,17 +46,11 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean_with(:truncation)
+  config.before :each do
+    Mongoid.purge!
   end
-
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
+  config.after :all do
+    Mongoid.default_session.drop
   end
 
 # The settings below are suggested to provide a good initial experience

@@ -57,8 +57,8 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.3.2'
 
-  gem 'pry-rails'
-  gem 'pry-rescue'
+  # gem 'pry-rails'
+  # gem 'pry-rescue'
   gem 'rspec-rails', '~> 3.2.0'
   gem 'mongoid-rspec', '~> 2.1.0'
   gem 'factory_girl_rails', '~> 4.5.0', require: false
@@ -86,7 +86,7 @@ group :test do
   gem 'capybara-webkit', '~> 1.4.1'
   gem 'capybara-screenshot', '~> 1.0.7'
   # database_cleaner is not required, but highly recommended
-  # gem 'database_cleaner', '~> 1.4.1' # Use 'Mongoid.purge!'
+  gem 'database_cleaner', '~> 1.4.1' # Use 'Mongoid.purge!'
   gem 'launchy', '~> 2.4.3'
   gem 'wait_for', '~> 0.1.1'
   gem 'simplecov', '~> 0.9.2', :require => false

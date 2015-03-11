@@ -13,16 +13,16 @@ describe PositionApplication do
       application.call.eligibility_rule_set = FactoryGirl.create(:accept_only_martti_to_lukurinki)
       application.user.unset(:edu_data)
       expect(application.eligible?).to eq(false)
-      application.user.set(:edu_data, {'A_GIVEN_NAME' => 'Emma'})
+      application.user.set(edu_data: {'A_GIVEN_NAME' => 'Emma'})
       expect(application.eligible?).to eq(false)
-      application.user.set(:edu_data, {'A_OTHER' => 'Martti'})
+      application.user.set(edu_data: {'A_OTHER' => 'Martti'})
       expect(application.eligible?).to eq(false)
-      application.user.set(:edu_data, {})
+      application.user.set(edu_data: {})
       expect(application.eligible?).to eq(false)
-      application.user.set(:edu_data, nil)
+      application.user.set(edu_data: nil)
       expect(application.eligible?).to eq(false)
 
-      application.user.set(:edu_data, {'A_GIVEN_NAME' => 'Martti'})
+      application.user.set(edu_data: {'A_GIVEN_NAME' => 'Martti'})
       expect(application.eligible?).to eq(true)
     end
   end
@@ -102,11 +102,16 @@ describe PositionApplication do
       applications[1].set_position!(selected_as: :position_member, deputy: applications[0].id.to_s)
       applications[0].reload.set_position!(selected_as: :position_deputy)
 
-      PositionApplication.all.each do |position_application|
-        expect(position_application.deputy).to eq(nil)
-        expect(position_application.member).to eq(nil)
-      end
-      check_all_self_references_are_nil.call
+      # PositionApplication.all.each do |position_application|
+      #   expect(position_application.deputy).to eq(nil)
+      #   expect(position_application.member).to eq(nil)
+      # end
+      expect(PositionApplication.find(applications[0].id).deputy).to eq(nil)
+      expect(PositionApplication.find(applications[0].id).member).to eq(nil)
+      expect(PositionApplication.find(applications[1].id).deputy).to eq(nil)
+      expect(PositionApplication.find(applications[1].id).member).to eq(nil)
+
+      # check_all_self_references_are_nil.call
     end
 
     it 'resets deputy/member if unselected' do
@@ -115,7 +120,13 @@ describe PositionApplication do
       applications[0].set_position!(selected_as: :position_deputy)
       applications[1].set_position!(selected_as: :position_member, deputy: applications[0].id.to_s)
       applications[0].reload.set_position!(selected_as: nil)
-      check_all_self_references_are_nil.call
+
+      expect(PositionApplication.find(applications[0].id).deputy).to eq(nil)
+      expect(PositionApplication.find(applications[0].id).member).to eq(nil)
+      expect(PositionApplication.find(applications[1].id).deputy).to eq(nil)
+      expect(PositionApplication.find(applications[1].id).member).to eq(nil)
+
+      #check_all_self_references_are_nil.call
     end
   end
 

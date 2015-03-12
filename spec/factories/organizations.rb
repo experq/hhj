@@ -21,7 +21,7 @@ FactoryGirl.define do
 
     factory :luonnontieteellinen_tiedekunta do
       name  'Luonnontieteellinen tiedekunta'
-      _id   '4f6b1edf91bc2b33d3010100'
+      #_id   '4f6b1edf91bc2b33d3010100'
       parent { FactoryGirl.create(:spartan_teknillinen_yliopisto) }
     end
 

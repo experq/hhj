@@ -7,7 +7,7 @@ FactoryGirl.define do
     factory :tasa_arvotyoryhma do
       name  'Tasa-arvotyöryhmä'
       description {{fi:'Työryhmä varmistaa tasa-arvon toteutumisen', en:'Organ assures fulfilling of equality'}}
-      _id   "4f6b1edf91bc2b3301010101"
+      #_id   "4f6b1edf91bc2b3301010101"
       association :organization, :factory => :kemian_laitos
     end
     factory :kirjakerho do

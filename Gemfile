@@ -82,7 +82,7 @@ group :test do
   # gem 'rspec_multi_matchers'#, '~> 1.2.1'
   gem 'cucumber-rails', '~> 1.4.2', require: false
   # restricting until capybara-webkit releases a version compatible with 2.1
-  gem 'capybara', '~> 2.4.4'
+  # gem 'capybara', '~> 2.4.4'
   gem 'capybara-webkit', '~> 1.4.1'
   gem 'capybara-screenshot', '~> 1.0.7'
   # database_cleaner is not required, but highly recommended

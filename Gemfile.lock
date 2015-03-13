@@ -356,7 +356,6 @@ DEPENDENCIES
   capistrano-rails (~> 1.1.2)
   capistrano-rails-console (~> 0.4.0)
   capistrano-rvm (~> 0.1.2)
-  capybara (~> 2.4.4)
   capybara-screenshot (~> 1.0.7)
   capybara-webkit (~> 1.4.1)
   coffee-rails (~> 4.1.0)

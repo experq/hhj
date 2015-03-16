@@ -12,6 +12,18 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_admin)
 
+  config.model 'AllianceMembership' do
+    object_label_method do
+      :user_name
+    end
+  end
+
+  config.model 'User' do
+    object_label_method do
+      :full_name
+    end
+  end
+
   ## == Cancan ==
   # config.authorize_with :cancan
 

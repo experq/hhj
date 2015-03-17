@@ -76,4 +76,5 @@ class PositionApplicationsController < ApplicationController
   def id_param
     params.permit(:id)
   end
+
 end

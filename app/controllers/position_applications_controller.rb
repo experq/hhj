@@ -26,11 +26,11 @@ class PositionApplicationsController < ApplicationController
 
   def create
     @call.position_applications.where(user_id: @user.id).destroy_all if @call.position_applications.where(user: @user).exists?
-    @position_application = @call.position_applications.build params[:position_application]
-    @position_application.deputy =  PositionApplication.find(params[:deputy_id]) if params[:deputy_id].present?
+    @position_application = @call.position_applications.build position_application_param
+    @position_application.deputy =  PositionApplication.find(deputy_id_param) if deputy_id_param.present?
     if @position_application.save
-      if params[:send_reminder_switch] && params[:send_reminder_switch] == "yes" &&  params[:reminder_email].present?
-        ApplicationMailer::EmailNotificationJob.new.async.perform(@position_application.id, @university.id, params[:reminder_email])
+      if send_reminder_switch_param && send_reminder_switch_param == "yes" && reminder_email_param.present?
+        ApplicationMailer::EmailNotificationJob.new.async.perform(@position_application.id, @university.id, reminder_email_param)
       end
       render "create"
     else
@@ -39,7 +39,7 @@ class PositionApplicationsController < ApplicationController
   end
 
   def update
-    @position_application.update_attributes! params[:position_application]
+    @position_application.update_attributes! position_application_param
     respond_to do |format|
       format.json { render :json => @position_application }
     end
@@ -52,6 +52,25 @@ class PositionApplicationsController < ApplicationController
 
   def find_application_from_call
     @position_application = @call.position_applications.find(params[:id])
+  end
+
+
+  private
+
+  def position_application_param
+    params.require(:position_application).permit(:position_application)
+  end
+
+  def deputy_id_param
+    params.require(:position_application).permit(:deputy_id)
+  end
+
+  def send_reminder_switch_param
+    params.require(:position_application).permit(:send_reminder_switch)
+  end
+
+  def reminder_email_param
+    params.require(:position_application).permit(:reminder_email)
   end
 
 end

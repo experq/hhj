@@ -29,7 +29,7 @@ class CallsController < ApplicationController
   end
 
   def create # create a new call for applications
-    call = @organ.calls.new params[:call]
+    call = @organ.calls.new call_params
 
     respond_to do |format|
       format.json { render json: call.to_json }
@@ -65,7 +65,7 @@ class CallsController < ApplicationController
   end
 
   def update
-    updated_call = params[:call]
+    updated_call = call_params
     if updated_call
       @call.update_attributes!(updated_call)
     else
@@ -105,4 +105,9 @@ class CallsController < ApplicationController
     end
   end
 
+ private
+
+  def call_params
+    params.require(:call).permit( :workflow, :eligibility_rule_set, { title: [:fi, :sv, :en] }, :member_amount, :deputy_amount, { quota_information: [:fi, :sv, :en] }, :date_open, :date_start, :date_end, :term_start, :term_end, { appointment_place_and_date: [:fi, :sv, :en] }, { description: [:fi, :sv, :en] } )
+  end
 end

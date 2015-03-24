@@ -28,7 +28,7 @@ gem 'execjs', '~> 2.3.0'
 gem 'mongoid', '~> 4.0.2'
 # gem 'bson_ext', '~> 1.5.1'
 gem 'mongoid_rails_migrations', '~> 1.1.0'
-gem 'mongoid-tree', '~> 2.0.0'
+gem 'mongoid-tree', '~> 2.0.0', :require => 'mongoid/tree'
 
 gem 'rails_admin', '~> 0.6.6'
 gem 'devise', '~> 3.4.1'

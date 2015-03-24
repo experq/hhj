@@ -3,15 +3,17 @@
 FactoryGirl.define do
   factory :call do
     association :organ, :factory => :kirjakerho
+    title 'call'
     member_amount 2
     deputy_amount 1
     factory :lukurinki do
       title "Kirjakerhon lukurinki"
       #_id "4f6b1edf91bc2b4403020202"
-      initialize_with { Call.first_or_create }
+      # initialize_with { Call.first_or_create }
     end
   end
   factory :helsinki_uni_call, class: Call do
+    title 'helsinki_uni_call'
     factory :call_for_student_council_board do
       association :organ, :factory => :helsinki_uni_student_council
       member_amount 1

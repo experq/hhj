@@ -3,7 +3,11 @@
 
 FactoryGirl.define do
   factory :user do
+    email      'halloped@localhost.fi'  # add a fake email for User validation
+    #initialize_with { User.first_or_create }
+
     association :university, :factory => :spartan_teknillinen_yliopisto
+
     factory :eija do
       #_id        '4f7963bf91bc2bc1f6000001'
       first_name 'Eija'
@@ -12,7 +16,7 @@ FactoryGirl.define do
       phone      '+358 40 123 1234'
       principal_name 'eizit@sty.fi'
       role       :role_union_employee
-      initialize_with { User.first_or_create }
+      #initialize_with { User.first_or_create }
     end
     factory :aaro do
       #_id        '4f7963bf91bc2bc1f6000005'
@@ -64,6 +68,8 @@ FactoryGirl.define do
     end
   end
   factory :helsinki_uni_user, class: User do
+    email      'halloped@localhost.fi' 
+
     factory :helsinki_uni_student_anna do
       association :university, :factory => :helsinki_uni
       #_id        '4f7963bf91bc2bc1f6000077'

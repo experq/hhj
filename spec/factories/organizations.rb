@@ -7,7 +7,7 @@ FactoryGirl.define do
     key 'key'
     initialize_with { Organization.first_or_create(key: :key)}      
   end  
-  
+
   factory :helsinki_uni, class: Organization do
     name  'Helsingin yliopisto'
     key   'helsinki'

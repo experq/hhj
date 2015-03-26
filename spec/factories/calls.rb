@@ -9,7 +9,7 @@ FactoryGirl.define do
     factory :lukurinki do
       title "Kirjakerhon lukurinki"
       #_id "4f6b1edf91bc2b4403020202"
-      # initialize_with { Call.first_or_create }
+      initialize_with { Call.first_or_create }
     end
   end
   factory :helsinki_uni_call, class: Call do

@@ -29,17 +29,21 @@ describe PositionApplication do
 
   context '(when marking applicants for selection)' do
 
-    PositionApplication.all.each do | application |
-      # application.selected_as.should == nil
-      expect(application.selected_as).to eq(nil)
+    it 'is not selected when not selected' do
+      PositionApplication.all.each do | application |
+        # application.selected_as.should == nil
+        expect(application.selected_as).to eq(nil)
+      end
     end
 
-    check_all_self_references_are_nil = lambda do
-      PositionApplication.all.each do |position_application|
-        # position_application.deputy.should == nil
-        # position_application.member.should == nil
-        expect(position_application.deputy).to eq(nil)
-        expect(position_application.member).to eq(nil)
+    it 'has no position without setting members' do
+      check_all_self_references_are_nil = lambda do
+        PositionApplication.all.each do |position_application|
+          # position_application.deputy.should == nil
+          # position_application.member.should == nil
+          expect(position_application.deputy).to eq(nil)
+          expect(position_application.member).to eq(nil)
+        end
       end
     end
 

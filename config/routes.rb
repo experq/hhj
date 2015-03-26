@@ -16,7 +16,7 @@ Halloped::Application.routes.draw do
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   end
 
-  scope "/:locale/:university" do
+  scope shallow_path: "/:locale/:university" do
 
     resources :users, only: [:edit, :update]
 

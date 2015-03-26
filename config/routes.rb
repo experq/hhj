@@ -16,7 +16,7 @@ Halloped::Application.routes.draw do
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   end
 
-  scope shallow_path: "/:locale/:university" do
+  scope "/:locale/:university" do
 
     resources :users, only: [:edit, :update]
 
@@ -39,6 +39,10 @@ Halloped::Application.routes.draw do
     resources :organizations
 
     get "/global_status", to: "pages#global_status"
+  end
+
+  scope shallow_path: "/:locale/:university" do
+    resources :recommendations, only: [:create, :destroy]
   end
 
 

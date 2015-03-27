@@ -7,14 +7,14 @@ namespace :db do
       raise "file parameter missing!\n\n" +
       "Usage:\n" +
       "RAILS_ENV=[env name] rake db:import:university file=[path to yaml file]\n\n" +
-      "e.g. 'RAILS_ENV=production rake db:import:university ./public/universities/helsinki/helsinki.yml'\n\n" +
+      "e.g. 'RAILS_ENV=production rake db:import:university ./db/seeds/universities/helsinki/helsinki.yml'\n\n" +
       "The name of the yaml file will be the identifier of the university. " +
       "E.g. helsinki.yaml will result organization found under www.halloped.fi/fi/helsinki\n" +
       "The identifier will also be used when mapping haka credentials so it must be \n" +
       "(the yaml file name must be) the same as first part of university domain name.\n\n" +
       "RAILS_ENV is development by default. If you want to import university to production server\n" +
       "you must use RAILS_ENV=production\n\n" +
-      "Tips: look under public/universities/helsinki for example file" unless file
+      "Tips: look under db/seeds/universities/helsinki for example file" unless file
 
       h = YAML.load_file(file)
       univ_name = h.keys.first

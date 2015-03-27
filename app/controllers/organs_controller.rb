@@ -24,7 +24,7 @@ class OrgansController < ApplicationController
   end
 
   def create # create a new organ document
-    @organ = selected_organization.organs.build params[:organ]
+    @organ = selected_organization.organs.build organ_params
 
     respond_to do |format|
       format.html do
@@ -63,8 +63,8 @@ class OrgansController < ApplicationController
   end
 
   def update # modify an existing organ
-    organ_params = params[:organ]
-    organ_params = organ_params.merge(organization: selected_organization)
+    organ_p = organ_params
+    organ_params = organ_p.merge(organization: selected_organization)
     respond_to do |format|
       format.html do
         if @organ.update_attributes(organ_params)
@@ -84,8 +84,13 @@ class OrgansController < ApplicationController
   protected
 
   def selected_organization
-    Organization.find params[:organ][:organization].unshift(@university._id).reject(&:blank?).last
+    Organization.find organ_params[:organization].unshift(@university._id).reject(&:blank?).last
   end
 
+  private
+
+  def organ_params
+    params.require(:organ).permit( { organization: [] }, { name: [:fi, :sv, :en] }, { description: [:fi, :sv, :en] }, :term_start, :term_end, :manager_name, :manager_email, :appointer, :official, :status )
+  end
 
 end

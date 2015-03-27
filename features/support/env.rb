@@ -6,6 +6,7 @@
 
 require 'cucumber/rails'
 require 'email_spec/cucumber'
+require 'capybara-screenshot/cucumber'
 require 'simplecov'
 SimpleCov.start 'rails'
 

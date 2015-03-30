@@ -83,7 +83,8 @@ group :test do
   gem 'cucumber-rails', '~> 1.4.2', require: false
   # restricting until capybara-webkit releases a version compatible with 2.1
   # gem 'capybara', '~> 2.4.4'
-  gem 'capybara-webkit', '~> 1.4.1'
+  gem 'capybara', '~> 2.0.3'
+  gem 'capybara-webkit', '~> 0.14.2' #'~> 1.4.1'
   gem 'capybara-screenshot', '~> 1.0.7'
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner', '~> 1.4.1' # Use 'Mongoid.purge!'

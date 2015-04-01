@@ -26,6 +26,7 @@ FactoryGirl.define do
     name  'Luonnontieteellinen tiedekunta'
     #_id   '4f6b1edf91bc2b33d3010100'
     parent { FactoryGirl.create(:spartan_teknillinen_yliopisto) }
+    initialize_with { new(name: name)}
   end
 
   factory :kirjasto, class: Organization do
@@ -37,13 +38,27 @@ FactoryGirl.define do
   factory :kemian_laitos, class: Organization do
     name  'Kemian laitos'
     #_id   '4f6b1edf91bc2b33d3010101'
-    parent { FactoryGirl.create(:luonnontieteellinen_tiedekunta) }
+    #parent { FactoryGirl.create(:luonnontieteellinen_tiedekunta) }
+    parent {
+      unless Organization.where(name: 'Luonnontieteellinen tiedekunta').exists?
+        FactoryGirl.create(:luonnontieteellinen_tiedekunta)
+      else
+        Organization.find_by(name: 'Luonnontieteellinen tiedekunta')
+      end
+    }
   end
 
   factory :fysiikan_laitos, class: Organization do
     name  'Fysiikan laitos'
     #_id   '4f6b1edf91bc2b33d3010102'
-    parent { FactoryGirl.create(:luonnontieteellinen_tiedekunta) }
+    # parent { FactoryGirl.create(:luonnontieteellinen_tiedekunta) }
+    parent {
+      unless Organization.where(name: 'Luonnontieteellinen tiedekunta').exists?
+        FactoryGirl.create(:luonnontieteellinen_tiedekunta)
+      else
+        Organization.find_by(name: 'Luonnontieteellinen tiedekunta')
+      end
+    }
   end
 
   factory :akhaimenidien_yliopisto, class: Organization do

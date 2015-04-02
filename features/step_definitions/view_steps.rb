@@ -1,7 +1,8 @@
 
 def check_view_values(container, table)
   table.hashes.each do |row|
-    container.find(".label:contains('#{row[:label]}') + span").should have_content row[:value]
+    # container.find(".label:contains('#{row[:label]}') + span").should have_content row[:value]
+    container.find('.label', text: row[:label], exact: true).find(:xpath, './following-sibling::span').should have_content row[:value]
   end
 end
 

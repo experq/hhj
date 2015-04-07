@@ -22,8 +22,10 @@ end
 Then %r/^I should see dialog '([^']*)'(?: with text '([^']*)')?:$/ do |*args|
   title, text, table = args
   content = find(".modal .content")
-  content.find("h2:contains('#{title}')")
-  content.find("textarea:contains('#{text}')") unless text.nil?
+  #content.find("h2:contains('#{title}')")
+  content.find('h2', text: title, exact: true)
+  #content.find("textarea:contains('#{text}')") unless text.nil?
+  content.find('textarea', text: text, exact: true) unless text.nil?
   check_view_values content, table
 end
 

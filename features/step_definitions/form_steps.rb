@@ -5,7 +5,7 @@ end
 
 def fillFieldByLabel(form, label, value)
   #form.all("label:contains('#{label}') ~ input").map { |input| input.set(value) }.any?
-  form.all('label', text: label, exact: true).map { |input| input.find(:xpath, './following-sibling::input').set(value) }.any?
+  form.all(:xpath, "//label[contains(.,'#{label}')]/following-sibling::input").map { |input| input.set(value) }.any?
 end
 
 def fillSelects(div, values)
@@ -17,9 +17,11 @@ def fillSelects(div, values)
 end
 
 def clickRadio(div, value)
+puts "div = #{div.inspect} value = #{value.inspect}"
   return false if value.nil? or div.nil?
   # div.find("label:contains('#{value}')").click
-  div.find('label', text: value, exact: true).click
+  # div.find('label', text: value, exact: true).click
+  div.find(:xpath, "//label[contains(.,'#{value}')]").click
 end
 
 def fillRadio(form, label, value)
@@ -50,7 +52,7 @@ end
 
 When %r/^I fill in form '([^']*)':$/ do |form_title, table|
   #form = find("*:contains('#{form_title}') ~ form")
-  form = find('h2', text: form_title, exact: true).find(:xpath, './following-sibling::form')
+  form = find(:xpath, "//*[contains(.,'#{form_title}')]/following-sibling::form")
   fill_in_form form, table.hashes
 end
 

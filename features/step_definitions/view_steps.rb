@@ -28,7 +28,8 @@ Then %r/^I should see dialog '([^']*)'(?: with text '([^']*)')?:$/ do |*args|
 end
 
 Then %r/^I should see level 3 header "([^"]*)"$/ do |text|
-  find("h3:contains('#{text}')")
+  # find("h3:contains('#{text}')")
+  find('h3', text: text, exact: true)
 end
 
 Then /^I should see (\d*) buttons{0,1} with text "([^"]*)"$/ do |number, text|

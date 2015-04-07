@@ -5,7 +5,7 @@ end
 
 def fillFieldByLabel(form, label, value)
   #form.all("label:contains('#{label}') ~ input").map { |input| input.set(value) }.any?
-  form.all('label', text: label, exact: true).map { |input| input.find(:xpath, './following-sibling::input').set(value) }.any?
+  form.all(:xpath, "//label[contains(.,'#{label}')]/following-sibling::input").map { |input| input.set(value) }.any?
 end
 
 def fillSelects(div, values)

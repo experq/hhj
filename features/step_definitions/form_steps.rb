@@ -17,10 +17,8 @@ def fillSelects(div, values)
 end
 
 def clickRadio(div, value)
-puts "div = #{div.inspect} value = #{value.inspect}"
   return false if value.nil? or div.nil?
   # div.find("label:contains('#{value}')").click
-  # div.find('label', text: value, exact: true).click
   div.find(:xpath, "//label[contains(.,'#{value}')]").click
 end
 

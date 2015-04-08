@@ -15,6 +15,8 @@ gem 'stylus', '~> 1.0.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 4.0.3'
+gem 'jquery-ui-rails', '~> 5.0.3'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -36,7 +38,7 @@ gem 'devise', '~> 3.4.1'
 gem 'wkhtmltopdf-binary', '~> 0.9.9.3'
 gem 'wicked_pdf', '~> 0.11.0'
 gem 'valid_email', '~> 0.0.10'
-gem 'redcarpet', '~> 3.2.2'
+gem 'redcarpet', '~> 3.2.3'
 gem 'gritter', '~> 1.1.0'
 gem 'airbrake', '~> 4.1.0'
 gem 'sucker_punch', '~> 1.3.2'
@@ -55,7 +57,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~> 1.3.2'
+  gem 'spring', '~> 1.3.4'
 
   # gem 'pry-rails'
   # gem 'pry-rescue'
@@ -84,7 +86,7 @@ group :test do
   # restricting until capybara-webkit releases a version compatible with 2.1
   #gem 'capybara', '~> 2.4.4'
   gem 'capybara-webkit', '~> 1.5.0'
-  gem 'capybara-screenshot', '~> 1.0.7'
+  gem 'capybara-screenshot', '~> 1.0.9'
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner', '~> 1.4.1' # Use 'Mongoid.purge!'
   gem 'launchy', '~> 2.4.3'

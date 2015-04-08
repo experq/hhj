@@ -24,13 +24,14 @@ end
 
 def fillRadio(form, label, value)
   # clickRadio first("span:contains('#{label}') + .buttons"), value
-  clickRadio first("span + .buttons"), value
+  # clickRadio first("span + .buttons"), value
+  clickRadio first(:xpath, "//span[contains(., '#{label}')]/following-sibling::*[1][@class='buttons']"), value
 end
 
 def fillSelectsWithRadio(form, label, value)
   selectValue, radioValue = value.split '+'
   # selectsDiv = form.first(".inline-block:contains('#{label}')")
-  selectsDiv = form.find(:xpath, "//div[@class='inline-block' and contains(.,'#{label}')]")
+  selectsDiv = form.first(:xpath, "//div[@class='inline-block' and contains(.,'#{label}')]")
 
   return false if selectsDiv.nil?
   fillSelects selectsDiv, selectValue.split('/')

@@ -1,7 +1,8 @@
 
 def check_view_values(container, table)
   table.hashes.each do |row|
-    container.find(".label:contains('#{row[:label]}') + span").should have_content row[:value]
+    # container.find(".label:contains('#{row[:label]}') + span").should have_content row[:value]
+    container.find('.label', text: row[:label], exact: true).find(:xpath, './following-sibling::span').should have_content row[:value]
   end
 end
 
@@ -21,13 +22,16 @@ end
 Then %r/^I should see dialog '([^']*)'(?: with text '([^']*)')?:$/ do |*args|
   title, text, table = args
   content = find(".modal .content")
-  content.find("h2:contains('#{title}')")
-  content.find("textarea:contains('#{text}')") unless text.nil?
+  #content.find("h2:contains('#{title}')")
+  content.find('h2', text: title, exact: true)
+  #content.find("textarea:contains('#{text}')") unless text.nil?
+  content.find('textarea', text: text, exact: true) unless text.nil?
   check_view_values content, table
 end
 
 Then %r/^I should see level 3 header "([^"]*)"$/ do |text|
-  find("h3:contains('#{text}')")
+  # find("h3:contains('#{text}')")
+  find('h3', text: text, exact: true)
 end
 
 Then /^I should see (\d*) buttons{0,1} with text "([^"]*)"$/ do |number, text|

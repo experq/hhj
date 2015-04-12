@@ -1,5 +1,5 @@
 class RecommendationsController < ApplicationController
-  respond_to :html, :js
+  # respond_to :html, :js
 
   def create
     @position_application = PositionApplication.find(params[:position_application_id])

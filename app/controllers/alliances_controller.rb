@@ -24,7 +24,7 @@ class AlliancesController < ApplicationController
   end
 
   def create
-    @alliance = @user.alliances.create! params[:alliance].merge(alliance_memberships_attributes(params[:application_ids]))
+    @alliance = @user.alliances.create! (alliance_params.merge(alliance_memberships_attributes(params[:application_ids])).permit!)
     @alliance.alliance_memberships.each do |membership|
       url = university_url(university: @university.key)
       AllianceMailer::Job.new.async.perform(membership.id, @university.id, url)
@@ -33,11 +33,17 @@ class AlliancesController < ApplicationController
 
   def alliance_memberships_attributes(application_ids)
     if application_ids
-      with_coapplicants = (application_ids | application_ids.map { |id| PositionApplication.find(id).member_id })
+      with_coapplicants = (application_ids | application_ids.map { |id| PositionApplication.find(id).member_id.to_s })
       {"alliance_memberships_attributes" => with_coapplicants.find_all(&:present?).map { |id| {"position_application_id" => id} }}
     else
       {}
     end
+  end
+  
+  private
+
+  def alliance_params
+    params.require(:alliance).permit( :name, :call_id )
   end
 
 end

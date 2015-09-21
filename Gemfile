@@ -67,6 +67,7 @@ group :test do
   gem 'launchy'
   gem 'wait_for'
   gem 'debugger'
+  gem 'simplecov', :require => false, :group => :test
 end
 
 # To use ActiveModel has_secure_password
@@ -80,7 +81,7 @@ end
 
 # Deploy with Capistrano
 gem 'capistrano'
-gem 'rvm-capistrano'
+# gem 'rvm-capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

@@ -6,7 +6,7 @@
 @test_finding = false
 
 def create_call(organ_finnish, member_amount)
-  organ = Organ.find_by('name.fi' => organ_finnish)
+  organ = Organ.find_by('name.fi' => organ_finnish, 'status' => :visible)
   call_titles = Hash[o.name_translations.map { |k,n| [k, "#{n} 2015"] }]
   unless @test_finding
     Call.create!(member_amount: member_amount,

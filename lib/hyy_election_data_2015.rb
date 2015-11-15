@@ -35,7 +35,7 @@ laak_finnish = "Lääketieteellisen tiedekunnan tiedekuntaneuvosto"
 create_call(laak_finnish, 5)
 
 hum_finnish = "Humanistisen tiedekunnan tiedekuntaneuvosto"
-create_call(hum_names, 5)
+create_call(hum_finnish, 5)
 
 matlu_names = "Matemaattis-luonnontieteellisen tiedekunnan tiedekuntaneuvosto"
 create_call(matlu_names, 5)
